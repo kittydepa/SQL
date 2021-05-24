@@ -29,4 +29,15 @@ SELECT first_name, last_name, hire_date
 FROM teachers
 WHERE hire_date < '2000-01-01'; */
 
-/* */
+
+
+/* E. Find teachers who earn $43,500 or more 
+
+SELECT first_name, last_name, salary
+FROM teachers
+WHERE salary >= 43500;  */
+
+
+/*---------------------------------------------------------------------*/
+
+/* Using LIKE and ILIKE with WHERE */
