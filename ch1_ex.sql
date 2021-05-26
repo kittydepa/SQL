@@ -19,8 +19,35 @@ CREATE TABLE zoo_animals (
 );
 ------------------------------------------------------------*/
 
-/*Part 2. Now use insert statements to load some sample data*/
+/*Part 2. Now use insert statements to load some sample data
 INSERT INTO zoo_animals (animals_name, species, birth_date, weight, diet, country_origin)
 VALUES ('Ginger', 'tiger', '1999-12-06', 50, 'Raw meat with bones', 'Mexico'),
 	  ('Talula', 'elephant', '2021-01-04', 88, 'Fresh fruits', 'Sri Lanka'),
-	  ('Mindy', 'alligator', '2015-06-27', 23, 'Raw meat, no bones', 'United States');
+	  ('Mindy', 'alligator', '2015-06-27', 23, 'Raw meat, no bones', 'United States'); */
+	  
+/*------------------------------------------------------------*/
+
+
+/* NOTE: the order of SQL queries should be: 
+	
+	SELECT column_names
+	FROM table_name
+	WHERE criteria
+	ORDER BY column_names;
+*/
+
+/*------------------------------------------------------------*/
+
+
+/* End of Ch 1. practice:
+
+1. Write a query that lists the schools in alphabetical order, along with teachers ordered by last name A-Z
+
+
+
+
+2. Write a query that finds the 1 teacher whose first name starts with S and who earns more than $40k
+
+
+
+3. Rank teachers hired since January 1, 2020, ordered by highest paid to lowest
