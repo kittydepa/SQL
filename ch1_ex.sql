@@ -1,5 +1,5 @@
 /*
-Quick exercise from end of ch. 1.
+Quick exercise from end of ch. 2.
 
 Part 1.
 Build a database to catalog all the zoo animals,
