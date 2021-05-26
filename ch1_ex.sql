@@ -32,8 +32,9 @@ VALUES ('Ginger', 'tiger', '1999-12-06', 50, 'Raw meat with bones', 'Mexico'),
 	
 	SELECT column_names
 	FROM table_name
-	WHERE criteria
+	WHERE criteria (LIKE/ILIKE, AND/OR)
 	ORDER BY column_names;
+	
 */
 
 /*------------------------------------------------------------*/
@@ -41,13 +42,23 @@ VALUES ('Ginger', 'tiger', '1999-12-06', 50, 'Raw meat with bones', 'Mexico'),
 
 /* End of Ch 1. practice:
 
-1. Write a query that lists the schools in alphabetical order, along with teachers ordered by last name A-Z
+1. Write a query that lists the schools in alphabetical order, along with teachers ordered by last name A-Z 
+SELECT *
+FROM teachers
+ORDER BY school, last_name;  */
 
 
 
+/* 2. Write a query that finds the 1 teacher whose first name starts with S and who earns more than $40k 
+SELECT *
+FROM teachers
+WHERE first_name LIKE 'S%'
+	AND salary > 40000;  */
 
-2. Write a query that finds the 1 teacher whose first name starts with S and who earns more than $40k
 
 
-
-3. Rank teachers hired since January 1, 2020, ordered by highest paid to lowest
+/* 3. Rank teachers hired since January 1, 2020, ordered by highest paid to lowest */
+SELECT *
+FROM teachers
+WHERE hire_date > '2010-01-01'
+ORDER BY salary DESC;
