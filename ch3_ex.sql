@@ -1,19 +1,5 @@
 /* Ch 3. Examples */
 
-/* Ex. 3.2 -  Exploring different numeric types*/
-CREATE TABLE number_data_types (
-	numeric_column numeric(20,5),
-	real_column real,
-	double_column double precision
-);
-
-INSERT INTO number_data_types
-VALUES
-	(.7, .7, .7)
-	(2.13579, 2.13579, 2.13579),,
-	(2.1357987654, 2.1357987654, 2.1357987654);
-SELECT * FROM number_data_types;
-
 
 /* Step one for example 3.1. 
 
@@ -31,4 +17,45 @@ VALUES
 /* Step 2 for example 3.1
 COPY char_data_types TO 'C:\Users\Public\typetest.txt'  /* Needed to be somewhere public...?? */
 WITH (FORMAT CSV, HEADER, DELIMITER ','); */
+
+/* Ex. 3.2 -  Exploring different numeric types
+CREATE TABLE number_data_types (
+	numeric_column numeric(20, 5), /* 20 digits total, with 5 digits after the decimal. If not enough digits, will be padded with 0 */
+	real_column real,
+	double_column double precision
+);
+
+INSERT INTO number_data_types
+VALUES
+	(.7, .7, .7),
+	(2.13579, 2.13579, 2.13579),
+	(2.1357987654, 2.1357987654, 2.1357987654);
+	
+SELECT * FROM number_data_types; */
+
+/* Ex 3.3 Seeing the difference between floating vs fixed 
+SELECT
+	numeric_column * 10000000 AS "Fixed",
+	real_column * 10000000 AS "Float"
+FROM number_data_types
+WHERE numeric_column = .7; */
+
+
+
+/* Ex 3.4 - Looking at 'timestamp' with 'time zone' and 'interval' types */
+CREATE TABLE date_time_types (
+	timestamp_column timestamp with time zone,
+	interval_column interval
+);
+
+INSERT INTO date_time_types
+VALUES
+	('2018-12-31 01:00 EST', '2 days'),
+	('2018-12-31 01:00 -8', '1 month'),
+	('2018-12-31 01:00 Australia/Melbourne', '1 century'),
+	(now(), '1 week');
+
+SELECT * FROM date_time_types;
+	
+
 
