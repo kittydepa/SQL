@@ -42,20 +42,29 @@ WHERE numeric_column = .7; */
 
 
 
-/* Ex 3.4 - Looking at 'timestamp' with 'time zone' and 'interval' types */
+/* Ex 3.4 - Looking at 'timestamp' with 'time zone' and 'interval' types 
 CREATE TABLE date_time_types (
 	timestamp_column timestamp with time zone,
 	interval_column interval
 );
 
 INSERT INTO date_time_types
-VALUES
+VALUES   
 	('2018-12-31 01:00 EST', '2 days'),
-	('2018-12-31 01:00 -8', '1 month'),
+	('2018-12-31 01:00 -8', '1 month'), /* - 8 is he UTC time zone notation */
 	('2018-12-31 01:00 Australia/Melbourne', '1 century'),
-	(now(), '1 week');
+	(now(), '1 week'); 
+	/* Above, PostgreSQL is reporting the date and time relative to _my_ computer's time zone */
 
-SELECT * FROM date_time_types;
+SELECT * FROM date_time_types; */
+
+
+/* Ex 3.5 - looking more at 'interval' type */
+SELECT
+	timestamp_column,
+	interval_column,
+	timestamp_column - interval_column AS new_date  /* The difference between the time stamp and the interval will be saved into a new column called 'new_date' */
+FROM date_time_types;
 	
 
 
