@@ -75,6 +75,7 @@ SELECT numeric_column,
 	CAST(numeric_column AS varchar(6))
 FROM number_data_types;
 
+/* This one below will not work! */
 SELECT CAST(char_column AS integer) FROM char_data_types;
 	
 
