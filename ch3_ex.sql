@@ -66,7 +66,7 @@ SELECT
 	timestamp_column - interval_column AS new_date  /* The difference between the time stamp and the interval will be saved into a new column called 'new_date' */
 FROM date_time_types; */
 
-/* Ex 3.6 - Using CAST() to convert data types */
+/* Ex 3.6 - Using CAST() to convert data types 
 SELECT timestamp_column, CAST(timestamp_column AS varchar(10))
 FROM date_time_types;
 
@@ -75,8 +75,15 @@ SELECT numeric_column,
 	CAST(numeric_column AS varchar(6))
 FROM number_data_types;
 
-/* This one below will not work! */
-SELECT CAST(char_column AS integer) FROM char_data_types;
+/* This one below will not work! 
+SELECT CAST(char_column AS integer) FROM char_data_types; */
+
+/* CAST shortcut notation in PostgreSQL, these two chunks are the same */ */
+SELECT timestamp_column, CAST(timestamp_column AS varchar(10))
+FROM date_time_types;
+
+SELECT timestamp_column::varchar(10)
+FROM date_time_types;
 	
 
 
