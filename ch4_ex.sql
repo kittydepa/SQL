@@ -174,3 +174,23 @@
 -- FROM us_counties_2010
 -- ORDER BY internal_point_lon DESC
 -- LIMIT 5;
+
+
+/* Example 4.4 - Importing a subset of columns with COPY - if a CSV file doesnt have data for all the columns in your target database */
+/* Specify the columns that ARE in the data. Scenario is this: the table below includes all of the variables you would
+ideally like to have in your table. However, the source data file DOES NOT contain all of these variables/columns.
+You can still import the CSV file using COPY, see below the CREATE TABLE query */ 
+ 
+-- CREATE TABLE supervisor_salaries (
+-- 	town varchar(30),
+-- 	county varchar(30),
+-- 	supervisor varchar(30),
+-- 	start_date date,
+-- 	salary money,
+-- 	benefits money
+--  );
+
+/* Copying the data we do have from the source data file */
+COPY supervisor_salaries (town, supervisor, salary) -- Add ( ) and include which variables ARE in the source file here, otherwise you will get an error
+FROM 'C:\Users\Public\supervisor_salaries.csv'
+WITH (FORMAT CSV, HEADER)
