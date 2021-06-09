@@ -190,7 +190,36 @@ You can still import the CSV file using COPY, see below the CREATE TABLE query *
 -- 	benefits money
 --  );
 
-/* Copying the data we do have from the source data file */
-COPY supervisor_salaries (town, supervisor, salary) -- Add ( ) and include which variables ARE in the source file here, otherwise you will get an error
+
+
+
+/* 4.5 Copying the data we do have from the source data file */
+-- COPY supervisor_salaries (town, supervisor, salary) -- Add ( ) and include which variables ARE in the source file here, otherwise you will get an error
+-- FROM 'C:\Users\Public\supervisor_salaries.csv'
+-- WITH (FORMAT CSV, HEADER)
+
+-- SELECT * FROM supervisor_salaries;
+
+
+
+/* Ex 4.6 - Adding a default value to a column during import */
+--  -- First, we will delete the current data in the table, and create a TEMPORARY table, where we will add in values to the columns that were empty/not in the source CSV data file
+-- DELETE FROM supervisor_salaries;
+
+-- Next, create the temporary table, and add data for the 'county' column like so:
+-- The temporary table will be used to add a default value to a the column during import
+CREATE TEMPORARY TABLE supervisor_salaries_temp (LIKE supervisor_salaries);
+
+COPY supervisor_salaries_temp (town, supervisor, salary)
 FROM 'C:\Users\Public\supervisor_salaries.csv'
-WITH (FORMAT CSV, HEADER)
+WITH (FORMAT CSV, HEADER);
+
+INSERT INTO supervisor_salaries (town, county, supervisor, salary)
+SELECT town, 'Some County', supervisor, salary -- This query is saying that, for the 2nd column if values are NULL, then add 'Some County' as the default value, not as the column name. Hence the use of the '' marks
+FROM supervisor_salaries_temp;
+
+-- SELECT * FROM supervisor_salaries_temp; -- This will not show the default county value...see next line of code
+DROP TABLE supervisor_salaries_temp; -- This will erase the temporary table, you NEED to drop it before you can see the results of the default value being applied to the main table...
+
+SELECT * FROM supervisor_salaries; -- Here you can see that after the temp table is dropped, the default county value is applied to the original table
+
